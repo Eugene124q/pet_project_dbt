@@ -1,20 +1,20 @@
-version: 2
+version: 1
 
 sources:
   - name: public
     description: Набор данных для хранения сырых данных
     tables:
       - name: artists
-        description: Таблица с сырыми данными из АМО
+        description: Таблица с сырыми данными из api yandex_music по методу сlient.artists_brief_info
       - name: albums
-        description: Таблица с сырыми данными из Facebook
+        description: Таблица с сырыми данными из api yandex_music по методу client.artists_direct_albums
       - name: tracks
-        description: Таблица с сырыми данными из Facebook (Новый кабинет)
+        description: Таблица с сырыми данными из api yandex_music по методу client.artists_tracks
       - name: popular_tracks
-        description: Таблица с сырыми данными из Yandex Direct
+        description: Таблица с сырыми данными из api yandex_music по методу сlient.artists_brief_info
       - name: similar_artists
-        description: Таблица с сырыми данными по объявлениям из Yandex Direct
+        description: Таблица с сырыми данными из api yandex_music по методу сlient.artists_brief_info
       - name: artists_metrics
-        description: Таблица с информацией о баннерах
+        description: Таблица с метриками (likes_count, ratings_month, ratings_week, ratings_day), создана на основе таблицы artists
       - name: albums_metrics
-        description: Таблица с сырыми данными из Google AdWords
+        description: Таблица с метрикой (likes_count), создана на основе таблицы albums
