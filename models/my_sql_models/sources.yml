@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: public
+    description: Набор данных для хранения сырых данных
+    tables:
+      - name: artists
+        description: Таблица с сырыми данными из АМО
+      - name: albums
+        description: Таблица с сырыми данными из Facebook
+      - name: tracks
+        description: Таблица с сырыми данными из Facebook (Новый кабинет)
+      - name: popular_tracks
+        description: Таблица с сырыми данными из Yandex Direct
+      - name: similar_artists
+        description: Таблица с сырыми данными по объявлениям из Yandex Direct
+      - name: artists_metrics
+        description: Таблица с информацией о баннерах
+      - name: albums_metrics
+        description: Таблица с сырыми данными из Google AdWords
