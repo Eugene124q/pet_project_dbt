@@ -42,7 +42,7 @@ WITH all_data_needed AS (
                     WHEN artist_table_first.name = 'Matt Lange'::text THEN 'United States'::text
                     WHEN artist_table_first.name = 'Ilan Bluestone'::text THEN 'United Kingdom'::text
                     WHEN artist_table_first.name = 'Owsey'::text THEN 'Ireland'::text
-                    WHEN artist_table_first.name = 'LXST CXNTURY'::text THEN 'Republic of Belarus'::text
+                    WHEN artist_table_first.name = 'LXST CXNTURY'::text THEN 'Belarus'::text
                     WHEN artist_table_first.name = 'iSorin'::text THEN 'United States'::text
                     WHEN artist_table_first.name = 'Estiva'::text THEN 'Netherlands'::text
                     WHEN artist_table_first.name = 'Andrew Bayer'::text THEN 'United States'::text
@@ -66,8 +66,8 @@ WITH all_data_needed AS (
             artist_table_second.name,
             artist_table_second.genres,
                 CASE
-                    WHEN artist_table_second.countries IS NOT NULL AND (artist_table_second.countries <> ALL (ARRAY['Соединённые Штаты Америки'::text, 'Великобритания'::text, 'Россия'::text, 'Германия'::text, 'Франция'::text, 'Исландия'::text, 'Норвегия'::text, 'Нидерланды'::text, 'Канада'::text])) THEN artist_table_second.countries
-                    WHEN artist_table_second.countries = 'Соединённые Штаты Америки'::text THEN 'United States'::text
+                    WHEN artist_table_second.countries IS NOT NULL AND (artist_table_second.countries <> ALL (ARRAY['США'::text, 'Великобритания'::text, 'Россия'::text, 'Германия'::text, 'Франция'::text, 'Исландия'::text, 'Норвегия'::text, 'Нидерланды'::text, 'Канада'::text])) THEN artist_table_second.countries
+                    WHEN artist_table_second.countries = 'США'::text THEN 'United States'::text
                     WHEN artist_table_second.countries = 'Великобритания'::text THEN 'United Kingdom'::text
                     WHEN artist_table_second.countries = 'Россия'::text THEN 'Russia'::text
                     WHEN artist_table_second.countries = 'Германия'::text THEN 'Germany'::text
