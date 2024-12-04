@@ -4,9 +4,9 @@ WITH all_data_needed AS (
             unnest(
                 CASE
                     WHEN artists.name = 'Moby'::text THEN string_to_array('electronics,triphop,house,downtempo,ambient,alternative,techno,punk,rock,chill-out,folk'::text, ','::text)
-                    WHEN artists.name = 'Burial'::text THEN string_to_array('electronics,dubstep,ambient,ukgarage,bass'::text, ','::text)
+                    WHEN artists.name = 'Burial'::text THEN string_to_array('electronics,dubstep,ambient,ukgarage,ukbass'::text, ','::text)
                     WHEN artists.name = 'deadmau5'::text THEN string_to_array('electronics,progressive house,electro house,techno,dubstep'::text, ','::text)
-                    WHEN artists.name = 'Armin van Buuren'::text THEN string_to_array('trance,dance'::text, ','::text)
+                    WHEN artists.name = 'Armin van Buuren'::text THEN string_to_array('eletronics,trance,dance'::text, ','::text)
                     when artists.name = 'ARTY'::text then string_to_array('dance,trance,kpop,lounge'::text, ','::text)
                     when artists.name = 'Bon Iver'::text then string_to_array('indie,pop'::text, ','::text)
                     when artists.name = 'Estiva'::text then string_to_array('trance,house,techno,dance'::text, ','::text)
@@ -20,6 +20,10 @@ WITH all_data_needed AS (
                     when artists.name = 'Sigur Rós'::text then string_to_array('postrock, experimental'::text, ','::text)
                     when artists.name = 'Trent Reznor'::text then string_to_array('electronics,animated,soundtrack,films'::text, ','::text)
                     when artists.name = 'Uppermost'::text then string_to_array('electronics,house,lounge'::text, ','::text)
+                    when artists.name = 'Andrew Bayer'::text then string_to_array('electronics,dance,trance'::text, ','::text)
+                    when artists.name = 'Duumu'::text then string_to_array('electronics,dance,relax,folk'::text, ','::text)
+                    when artists.name = 'Ilan Bluestone'::text then string_to_array('dance,trance'::text, ','::text)
+                    when artists.name = 'London Grammar'::text then string_to_array('indie, ukbass'::text, ','::text)
                     ELSE string_to_array(replace(artists.genres, 'genre'::text, ''::text), ','::text)
                 END) AS genres,
             artists.countries,
