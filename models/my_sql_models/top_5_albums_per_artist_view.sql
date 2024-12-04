@@ -2,7 +2,10 @@ with total_likes as
 (
 	SELECT album_id,
 	       title,
-	       genres,
+	       CASE 
+                WHEN genres LIKE '%bass%' THEN REPLACE(genres, 'bass', 'ukbass')
+                ELSE ratings_of_albums_view.genres
+           END AS genres,
 	       sum(likes_count) as total_likes,
 	       artist_id,
 	       name,
