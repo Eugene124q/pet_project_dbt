@@ -4,6 +4,10 @@ with total_likes as
 	       title,
 	       CASE 
                 WHEN genres LIKE '%bass%' THEN REPLACE(genres, 'bass', 'ukbass')
+				when ratings_of_albums_view.title = 'Breathe In'::text then 'trance'::text
+                when ratings_of_albums_view.title = 'Anjunabeats Worldwide 03'::text then 'trance'::text
+                when ratings_of_albums_view.title = 'A State of Trance 2024'::text then 'trance'::text
+                when ratings_of_albums_view.title = 'In Search of Sunrise 19'::text then 'trance'::text
                 ELSE ratings_of_albums_view.genres
            END AS genres,
 	       sum(likes_count) as total_likes,
