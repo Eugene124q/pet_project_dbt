@@ -1,5 +1,6 @@
 select artist_id,
        a.name,
+       al.album_id,
        al.title as album_title,
        popular_track_id,
        pt.title,

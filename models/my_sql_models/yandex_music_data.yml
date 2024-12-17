@@ -1,0 +1,212 @@
+version: 1
+
+sources:
+  - name: public
+    description: Набор данных из api yandex_music
+    tables:
+      - name: artists
+        description: Таблица с сырыми данными из api yandex_music по методу сlient.artists_brief_info
+      - name: albums
+        description: Таблица с сырыми данными из api yandex_music по методу client.artists_direct_albums
+      - name: tracks
+        description: Таблица с сырыми данными из api yandex_music по методу client.artists_tracks
+      - name: popular_tracks
+        description: Таблица с сырыми данными из api yandex_music по методу сlient.artists_brief_info
+      - name: similar_artists
+        description: Таблица с сырыми данными из api yandex_music по методу сlient.artists_brief_info
+      - name: artists_metrics
+        description: Таблица с метриками (likes_count, ratings_month, ratings_week, ratings_day), создана на основе таблицы artists
+      - name: albums_metrics
+        description: Таблица с метрикой (likes_count), создана на основе таблицы albums  
+
+models: 
+  - name: albums_metrics_view
+    description: предствление на основе таблицы albums_metrics, где извлекаются последние значения likes_count за каждый день для каждого album_id
+    columns: 
+    - name: album_id
+      description: уникальный id альбома
+    - name: likes_count
+      description: количество лайков альбома
+    - name: date
+      description: дата в формате %Y-%m-%d
+
+  - name: artists_metrics_view
+    description: представление на основе таблицы artists_metrics, где извлекаются последние значения likes_count, rating_month, rating_week, rating_day за каждый день для каждого artist_id
+  - columns: 
+    - name: artist_id
+      description: уникальный id исполнителя
+    - name: likes_count
+      description: количество лайков исполнителя
+    - name: likes_count
+      description: количество лайков исполнителя
+    - name: ratings_month
+      description: значение рейтинга месяца
+    - name: ratings_week
+      description: значение рейтинга недели
+    - name: ratings_day
+      description: значение рейтинга дня
+    - name: date
+      description: дата в формате %Y-%m-%d
+
+  - name: artists_view
+    description: представление на основе таблицы artists, содеражщее общую информацию об исполнителях
+  - columns:
+    - name: artist_id
+      description: уникальный id исполнителя
+    - name: name
+      description: имя/псевдоним исполнителя
+    - name: genres
+      description: жанры, в которых работает исполнитель
+    - name: countries
+      description: страна, к которой относится исполнитель
+    - name: init_date
+      description: год рождения исполнителя
+    - name: cover_uri
+      description: ссылка на обложку исполнителя
+    - name: counts_tracks
+      description: количество треков исполнителя в базе яндекс-музыки
+    - name: counts_direct_albums
+      description: количесво релизов исполнителя в базе яндекс-музыки
+    - name: description_text
+      description: описание исполнителя 
+
+  - name: all_about_artists_view
+    description: таблица, содержащая последние значения метрик за каждый день и общую информацию об исполнителях
+  - columns: 
+    - name: artist_id
+      description: уникальный id исполнителя
+    - name: likes_count 
+      description: количество лайков исполнителя
+    - name: ratings_month
+      description: значение рейтинга месяца
+    - name: ratings_week
+      description: значение рейтинга недели
+    - name: ratings_day
+      description: значение рейтинга дня
+    - name: date
+      description: дата в формате %Y-%m-%d
+    - name: name
+      description: имя/псевдоним исполнителя
+    - name: genres
+      description: жанры, в которых работает исполнитель
+    - name: countries
+      description: страна, к которой относится исполнитель
+    - name: init_date
+      description: год рождения исполнителя
+    - name: cover_uri
+      description: ссылка на обложку исполнителя 
+    - name: counts_tracks
+      description: количество треков исполнителя в базе яндекс-музыки
+    - name: count_direct_albums
+      description: количесво релизов исполнителя в базе яндекс-музыки
+    - name: description_text
+      description: описание исполнителя                
+
+  - name: all_about_artists_retrospective_view
+    description: таблица, в которой значения метрик взяты за все время 
+  - columns:
+    - name: artist_id
+      description: уникальный id исполнителя
+    - name: likes_count 
+      description: количество лайков исполнителя
+    - name: ratings_month
+      description: значение рейтинга месяца
+    - name: ratings_week
+      description: значение рейтинга недели
+    - name: ratings_day
+      description: значение рейтинга дня
+    - name: date
+      description: дата в формате %Y-%m-%d
+    - name: name
+      description: имя/псевдоним исполнителя
+    - name: genres
+      description: жанры, в которых работает исполнитель
+    - name: countries
+      description: страна, к которой относится исполнитель
+    - name: init_date
+      description: год рождения исполнителя
+    - name: cover_uri
+      description: ссылка на обложку исполнителя 
+    - name: counts_tracks
+      description: количество треков исполнителя в базе яндекс-музыки
+    - name: count_direct_albums
+      description: количесво релизов исполнителя в базе яндекс-музыки
+    - name: description_text
+      description: описание исполнителя
+
+  - name: popular_tracks_of_artist
+    description: 10 популярных треков исполнителя
+  - columns:
+    - name: artist_id
+      description: уникальный id исполнителя
+    - name: name
+      description: имя/псевдоним исполнителя
+    - name: album_id
+      description: уникальный id альбома
+    - name: album_title
+      description: название альбома
+    - name: popular_track_id
+      description: уникальный id трека
+    - name: title
+      description: название трека
+    - name: cover_uri
+      description: ссылка на обложку трека
+
+  - name: similar_artist_view
+    description: 10 похожих исполнителей
+  - columns: 
+    - name: artist_id
+      description: уникальный id исполнителя
+    - name: name
+      description: имя/псевдоним исполнителя
+    - name: similar_artist_id
+      description: уникальный id похожего исполнителя
+    - name: similar_artist_name
+      description: имя/псевдоним похожего иполнителя
+    - name: cover_uri
+      description: ссылка на обложку похожего исполнителя
+    - name: counts_tracks
+      description: количество треков похожего исполнителя в базе яндекс-музыки
+    - name: counts_direct_albums
+      description: количество релизов похожего исполнителя в базе яндекс-музыки 
+    
+  - name: top_5_albums_per_artist_view
+    description: топ 5 самых популярных релизов исполнителя
+  - columns: 
+    - name: artist_id
+      description: уникальный id исполнителя
+    - name: name 
+      description: имя/псевдоним исполнителя 
+    - name: album_id
+      description: уникальный id релиза
+    - name: title
+      description: название релиза
+    - name: genres
+      description: жанр релиза
+    - name: total_likes
+      description: общее количество лайков
+
+  - name: artists_release_history_view
+    description: история релизов исполнителя
+  - columns:
+    - name: date
+      description: дата в формате %Y-%m-%d, первой датой является самый первый релиз исполнителя
+    - name: release_date
+      description: дата релиза в формате %Y-%m-%d
+    - name: artist_id
+      description: уникальный id исполнителя
+    - name: name 
+      description: имя/псеводним исполнителя
+    - name: album_id
+      description: уникальный id релиза
+    - name: title
+      description: название релиза
+    - name: likes_count
+      description: количесво лайков
+    - name: genres
+      description: жанр релиза
+    
+
+                               
+
+

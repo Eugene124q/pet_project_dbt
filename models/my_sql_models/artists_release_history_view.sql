@@ -8,11 +8,12 @@
             WHEN gd.date = roav.release_date THEN roav.release_date
             ELSE NULL::date
         END AS release_date,
-        roav.album_id,
-        roav.title,
         roav.artist_id,
         roav.name,
-        roav.likes_count
+        roav.album_id,
+        roav.title,
+        roav.likes_count,
+        roav.genres
    FROM generated_dates as gd
      LEFT JOIN {{ ref("ratings_of_albums_view") }} as roav ON gd.date = roav.release_date
   ORDER BY gd.date asc

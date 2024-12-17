@@ -30,11 +30,11 @@ ranked_albums as
 		   row_number() OVER (PARTITION BY artist_id ORDER BY total_likes DESC) AS rank
 	from total_likes
 )
-select name,
-       artist_id,
+select artist_id,
+	   name,
        album_id,
-	    title,
-	    genres,
-	    total_likes
+	   title,
+	   genres,
+	   total_likes
 from ranked_albums
 where rank <= 5
