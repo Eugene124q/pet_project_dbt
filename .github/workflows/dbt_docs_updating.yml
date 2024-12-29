@@ -20,8 +20,7 @@ jobs:
 
       - name: Generate DBT Docs
         run: |
-          dbt docs generate --profiles-dir /home/evgenij/pet_project/pet_project_dbt
-          ls -la target # Проверка содержимого папки target
+          dbt docs generate
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
