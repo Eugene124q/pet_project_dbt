@@ -209,7 +209,7 @@ models:
     description: ссылка на обложку исполнителя 
   - name: counts_tracks
     description: количество треков исполнителя в базе яндекс-музыки
-  - name: count_direct_albums
+  - name: counts_direct_albums
     description: количесво релизов исполнителя в базе яндекс-музыки
   - name: description_text
     description: описание исполнителя                
@@ -241,12 +241,12 @@ models:
     description: ссылка на обложку исполнителя 
   - name: counts_tracks
     description: количество треков исполнителя в базе яндекс-музыки
-  - name: count_direct_albums
+  - name: counts_direct_albums
     description: количесво релизов исполнителя в базе яндекс-музыки
   - name: description_text
     description: описание исполнителя
 
-- name: popular_tracks_of_artist
+- name: popular_tracks_of_artists
   description: 10 популярных треков исполнителя
   columns:
   - name: artist_id
@@ -264,7 +264,7 @@ models:
   - name: cover_uri
     description: ссылка на обложку трека
 
-- name: similar_artist_view
+- name: similar_artists_view
   description: 10 похожих исполнителей
   columns: 
   - name: artist_id
@@ -306,7 +306,7 @@ models:
   description: история релизов исполнителя
   columns:
   - name: date
-    description: дата в формате %Y-%m-%d, первой датой является самый первый релиз исполнителя
+    description: дата в формате %Y-%m-%d, первой датой является первая дата релиз исполнителя
   - name: release_date
     description: дата релиза в формате %Y-%m-%d
   - name: artist_id
@@ -321,6 +321,34 @@ models:
     description: количесво лайков
   - name: genres
     description: жанр релиза
+  
+- name: ratings_of_albums_view
+  description: информация об альбомах с суммарным количеством лайков каждого альбома
+  columns: 
+  - name: likes_count
+    description: суммарное количество лайков альбома
+  - name: date
+    description: дата в формате %Y-%m-%d
+  - name: artist_id
+    description: уникальный id исполнителя
+  - name: title
+    description: название альбома
+  - name: track_count
+    description: количество треков в альбоме
+  - name: cover_uri
+    description: ссылка на обложку альбома
+  - name: genres
+    description: жанр альбома
+  - name: release_date
+    description: дата релиза альбома в формате %Y-%m-%d
+  - name: label_id
+    description: уникальный id лейбла, выпустившего альбом
+  - name: label_name
+    description: название лейбла, выпустившего альбом
+  - name: name
+    description: имя/псевдоним исполнителя
+  - name: countries
+    description: страна, к которой относится исполнитель
   
 
                                
