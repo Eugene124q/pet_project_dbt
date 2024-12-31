@@ -102,6 +102,11 @@ sources:
 
       - name: artists_metrics
         description: Таблица с метриками (likes_count, ratings_month, ratings_week, ratings_day), создана на основе таблицы artists
+        tests:
+          - dbt_utils.recency:
+              datepart: day
+              interval: 1
+              field: dt
         columns:
         - name: artist_id
           description: уникальный id исполнителя
@@ -120,6 +125,11 @@ sources:
 
       - name: albums_metrics
         description: Таблица с метрикой (likes_count), создана на основе таблицы albums
+        tests:
+          - dbt_utils.recency:
+              datepart: day
+              interval: 1
+              field: dt
         columns: 
         - name: album_id
           description: уникальный id альбома
@@ -129,7 +139,6 @@ sources:
           description: количество лайков альбома за каждую дату
         - name: dt
           description: дата в формате %Y-%m-%d %H:%M:%S.%f
-
 
 models: 
 - name: albums_metrics_view
@@ -348,7 +357,7 @@ models:
   - name: name
     description: имя/псевдоним исполнителя
   - name: countries
-    description: страна, к которой относится исполнитель, отмеченный как "мне нравится"!!!!!!!!
+    description: страна, к которой относится исполнитель
     
   
 
